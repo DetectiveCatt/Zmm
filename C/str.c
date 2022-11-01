@@ -21,7 +21,7 @@ string string_create(const char* str);
 
 void string_add_char(string* s, char c);
 
-void string_add(string* s, const char* str);
+void set_string(string* s, const char* str);
 
 void string_insert(string* s, str_size pos, const char* str);
 
@@ -91,7 +91,7 @@ void string_add_char(string* s, char c) {
 	*s = s_data->buff;
 }
 
-void string_add(string* s, const char* str) {
+void set_string(string* s, const char* str) {
 	string_data* s_data = string_get_data(*s);
 	
 	str_size str_length = strlen(str);

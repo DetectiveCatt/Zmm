@@ -37,7 +37,7 @@ std::vector<std::string> split_string(const std::string& s)
 {
     std::vector<std::string> splitted;
     bool flag = false;
-    std::string tmp;
+    std::string tmp = "";
     for (int i=0; i<s.capacity(); i++){
         tmp += s[i];
         if (s[i] == '"' && flag == false){
@@ -84,7 +84,7 @@ std::vector<Token> lex(std::string data, int &num){
             Token token(split_tokens[i], linenum, "keyword");
             
         }
-        else if (split_tokens[i] == ";"){
+        else if (split_tokens[i] == "\n"){
             linenum +=1;
             
         }
