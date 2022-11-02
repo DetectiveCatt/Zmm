@@ -3,11 +3,13 @@
 #include <string.h>
 #include "str.c"
 
-void lex(string uwu, int len, string *tokens){
+
+void lex(string uwu){
   char ch;
 
   string tokarr[2048];
   int tokarrptr = 0;
+
   
   string tmp = string_create(NULL);
   
@@ -16,36 +18,34 @@ void lex(string uwu, int len, string *tokens){
     string_add_char(&tmp, ch);
     if (ch == '<'){
       string_remove(tmp, string_length(tmp)-1, string_length(tmp)); // pop a character off tmp
-      tokarr[tokarrptr] = tmp; // append tmp
+      set_string(&tokarr[tokarrptr], tmp);
+      printf("%s", tokarr[tokarrptr]);
       tokarrptr++; // add onto the current token pointer
       string_remove(tmp, 0, string_length(tmp)); // clear tmp
-      printf("%s", tmp);
     }
     if (ch == '>'){
       string_remove(tmp, string_length(tmp)-1, string_length(tmp)); // pop a character off tmp
-      tokarr[tokarrptr] = tmp; // append tmp
+      set_string(&tokarr[tokarrptr], tmp);
+      printf("%s", tokarr[tokarrptr]);
       tokarrptr++; // add onto the current token pointer
       string_remove(tmp, 0, string_length(tmp)); // clear tmp
-      printf("%s", tmp);
     }
     if (ch == ' '){
       string_remove(tmp, string_length(tmp)-1, string_length(tmp)); // pop a character off tmp
-      tokarr[tokarrptr] = tmp; // append tmp
+      set_string(&tokarr[tokarrptr], tmp);
+      printf("%s", tokarr[tokarrptr]);
       tokarrptr++; // add onto the current token pointer
       string_remove(tmp, 0, string_length(tmp)); // clear tmp
-      printf("%s", tmp);
     }
     if (ch == ';'){
       string_remove(tmp, string_length(tmp)-1, string_length(tmp)); // pop a character off tmp
-      tokarr[tokarrptr] = tmp; // append tmp
+      set_string(&tokarr[tokarrptr], tmp);
+      printf("%s", tokarr[tokarrptr]);
       tokarrptr++; // add onto the current token pointer
       string_remove(tmp, 0, string_length(tmp)); // clear tmp
-      printf("%s", tmp);
+      
     }
   }
-  
-  len = tokarrptr;
-  tokens = tokarr;
   return;
 
 }
@@ -63,11 +63,9 @@ int main()
         
     }
     fclose(file);
-    int tokenslen;
-    string tokens[2048];
-    lex(abc, tokenslen, tokens);
-    for (int i = 0; i<tokenslen; i++){
-      printf("%s", tokens[i]);
-    }
+    lex(abc);
+    // for (int i = 0; i<tokarrptr; i++){
+    //   printf("%s", tokarr[i]);
+    // }
     return 0;
 }
